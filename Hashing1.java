@@ -67,3 +67,34 @@ class Solution {
         return new ArrayList<>(map.values());
     }
 }
+
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        String[] words = s.split(" ");
+        if (words.length != pattern.length()) return false;
+        HashMap<Character, String> patToWord = new HashMap<>();
+        HashMap<String, Character> wordToPat = new HashMap<>();
+        for (int i = 0; i < pattern.length(); i++){
+            char pat = pattern.charAt(i);
+            String word = words[i];
+            //String sub = s.split(i);
+            if( patToWord.containsKey(pat)){
+                if(!patToWord.get(pat).equals(word)) {return false;}
+            }
+            else{
+                patToWord.put(pat, word);
+            }
+            if (wordToPat.containsKey(word)){
+                if(wordToPat.get(word)!= pat) return false;}
+            else {
+                wordToPat.put(word, pat);
+            }
+
+
+        }
+
+
+        return true;
+
+    }
+}
